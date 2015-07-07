@@ -1,9 +1,11 @@
 #Matematica Edu Soft
+---------------------------------------
 
 ##Useful commands
 ###Generating documentation
     ./node_modules/.bin/jsdoc yourJavaScriptFile.js
 
+---------------------------------------
 
 ##Used in this project
 
