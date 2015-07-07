@@ -3,10 +3,21 @@
  */
 
 /**
- * Multiply number by itself
- * @param number number to multiply
- * @returns {number}
+ * Sum of two numbers
+ * @param a {number} first number
+ * @param b {number} second number
+ * @returns {number} sum of given a and b
  */
-function sqr(number){
-    return number*number;
+function sum(a,b){
+    return a+b;
+}
+
+/**
+ * Product of two numbers
+ * @param a
+ * @param b
+ * @returns {number} product of given a and b
+ */
+function product(a,b){
+    return a*b;
 }
