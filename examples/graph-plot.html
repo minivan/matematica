@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matematica</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link href="graph-plot.css" rel="stylesheet" type="text/css" />
+    <link href="mui.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+
+<body onload="drawAxis();" >
+
+    <table style="width: 100%">
+        <tr>
+            <input style="padding-right: 30px" type="text" id="textbox"/>
+            <button class="mui-btn mui-btn-primary" onclick="createObject();">Evaluate</button>
+        </tr>
+
+
+    </table>
+
+
+    </div>
+
+
+
+
+<script type="text/javascript">
+
+    var WIDTH = 800;
+    var HEIGHT = 600;
+    var funcObjects = [];
+
+    // Function class
+
+    var Function = function(red, green, blue, data){
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.data = data;
+    };
+
+    Function.prototype.plotFunction = function(){
+
+
+        var expr = document.getElementById("textbox").value;
+
+        expr = expr.replace("x", "(k*0.1)", "g");
+        expr = expr.replace("sin(", "Math.sin(", "g");
+        expr = expr.replace("cos(", "Math.cos(", "g");
+
+
+        for (var k = -1000; k < 1000; k++) {
+            this.data.push({"x": 0.1 * k, "y": eval(expr)  });
+        }
+
+        var lineGen = d3.svg.line()
+                .x( function(d){ return xScale(d.x);})
+                .y( function(d){ return yScale(d.y);})
+                .interpolate("basis");
+
+        canvas.append("svg:path")
+                .attr("d", lineGen(this.data))
+                .attr("stroke", "rgb(" + this.red + "," + this.green +"," + this.blue + ")")
+                .attr("stroke-width", 2)
+                .attr("fill", "none");
+
+        console.log("Hello!");
+    }
+
+
+    // Creating canvas for drawing
+    var canvas = d3.select("tr")
+            .append("svg")
+            .attr("width", WIDTH)
+            .attr("height", HEIGHT);
+
+    // Creating scales for x and y axis
+
+    var xScale = d3.scale.linear().range([20, WIDTH - 20]).domain([-5, 5]);
+    var yScale = d3.scale.linear().range([20, HEIGHT - 20]).domain([5, -5]);
+
+
+
+    // Function for drawing axis
+    function drawAxis(){
+
+        xAxis = d3.svg.axis()
+                .scale(xScale);
+
+        yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left");
+
+        canvas.append("svg:g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + HEIGHT/2 + ")")
+                .call(xAxis);
+
+        canvas.append("svg:g")
+                .attr("class","x axis")
+                .attr("transform", "translate(" + WIDTH/2 + ",0)")
+                .call(yAxis);
+    }
+
+
+
+    function createObject() {
+        var data = [];
+        var r =  Math.floor(Math.random()*250);
+        var g =  Math.floor(Math.random()*250);
+        var b =  Math.floor(Math.random()*250);
+        var func = new Function(r, g, b, data );
+
+        // Create a text
+        var txt = document.createElement("TEXT");
+        var t = document.createTextNode("FUNCTION\n");
+        txt.appendChild(t);
+        document.body.appendChild(txt);
+
+        funcObjects.push(func);
+        func.plotFunction();
+    }
+
+
+
+
+</script>
+
+</body>
+</html>
