@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mathFunctions.js"></script>
+    <script src="js/input.js"></script>
+    <style>
+        #wrong-input {
+            margin-top:10px;
+        }
+        #about-functions td[colspan]:not([colspan="1"]) {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">matematica.md</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Input Example <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <div class="col-xs-12 col-md-6">
+            <div class="col-lg-12">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="function-name"></button>
+                    </span>
+                    <input type="text" class="form-control" id="formula" placeholder="Introdu functia">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    </span>
+                </div>
+            </div>
+            <div class="alert alert-danger col-lg-12" id="wrong-input" role="alert">Ati introdus gresit formula !</div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <table class="table" id="functions-list">
+                <thead>
+                    <tr>
+                        <td class="col-xs-10">Functia</td>
+                        <td class="col-xs-2">Actiuni</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-md-12">
+
+            <table class="table table-bordered" id="about-functions">
+                <thead>
+                <tr>
+                    <td>
+                        Functia
+                    </td>
+                    <td>
+                        Descriere
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="info">
+                    <td colspan="2">
+                        Functii generale
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        putere(a,b)
+                    </td>
+                    <td>
+                        Ridica expresia a la puterea b. ( a<sup>b</sup> )
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        radical(a)
+                    </td>
+                    <td>
+                        Radicalul de ordin 2 din a
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        radical(a,b)
+                    </td>
+                    <td>
+                        Radicalul de ordin b din a
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ln(a)
+                    </td>
+                    <td>
+                        Logaritm natural din a
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        log(a,b)
+                    </td>
+                    <td>
+                        Logaritm in baza b din a
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td colspan="2">
+                        Functii trigonometrice
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        sin(x)
+                    </td>
+                    <td>
+                        Evaluleaza sinus din expresia x (x - grade)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        cos(x)
+                    </td>
+                    <td>
+                        Evaluleaza cosinus din expresia x (x - grade)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        tg(x)
+                    </td>
+                    <td>
+                        Evaluleaza tangenta din expresia x (x - grade)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ctg(x)
+                    </td>
+                    <td>
+                        Evaluleaza tangenta din expresia x (x - grade)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        rad(x)
+                    </td>
+                    <td>
+                        Transforma x grade in radiani
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        grade(x)
+                    </td>
+                    <td>
+                        Transforma x radiani in grade
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td colspan="2">Constante</td>
+                </tr>
+                <tr>
+                    <td>
+                        e
+                    </td>
+                    <td>
+                        e = 2.71828182846
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        pi
+                    </td>
+                    <td>
+                        &Pi; = 3.14159265359
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
