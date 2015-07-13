@@ -10,44 +10,11 @@
 }
 
 
-body{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    max-height: 100%;
-    font-family:Sans-serif;
-    line-height: 1.5em;
-}
-
 .innertube{
     margin: 15px; /* Provides padding for the content */
 }
 
-p {
-    color: #555;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul a {
-    color: darkgreen;
-    text-decoration: none;
-}
-
 /*IE6 fix*/
-* html body{
-    padding: 0 0 0 230px; /* Set the last value to the width of the navigation frame */
-}
-
-* html main{
-    height: 100%;
-    width: 100%;
-}
-
 .grid .tick {
     stroke: lightgrey;
     opacity: 0.7;

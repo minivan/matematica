@@ -1,36 +1,70 @@
 var currentChar = 'e';
 
+var functions = [];
+
 // Creating canvas for drawing
 var canvas;
+var WIDTH = 800;
+var HEIGHT = 600;
+var xLines = 30;
+var yLines = 30;
+var totalPoints = 1000;
 
+var colors = ["#000000","#480000","#D00000","#009900","#0066CC","#660000","#663366","#9900FF","#99FF33","#9966FF"
+    ,"#CC0000","#FF0000","#CCFF66"
+];
+
+function MathFunction(formula){
+    this.id = currentChar;
+    this.formula = formula;
+    this.color = colors.pop();
+    document.getElementById("formula").value = "";
+
+    this.getData = function(left,right){
+        left = typeof left !== 'undefined' ? right : -xLines;
+        right = typeof right !== 'undefined' ? right : xLines;
+        var x,step = (right-left)/totalPoints;
+        var data = [];
+        for(x = left; x < right; x += step){
+            data.push({'x' : x, 'y' : eval(this.formula)});
+        }
+
+        return data;
+    }
+
+    this.plot = function(){
+        var lineGen = d3.svg.line()
+            .x( function(d){ return xScale(d.x);})
+            .y( function(d){ return yScale(d.y);})
+            .interpolate("basis");
+
+        canvas.append("svg:path")
+            .attr("d", lineGen(this.getData()))
+            .attr("stroke", this.color)
+            .attr("stroke-width", 2)
+            .attr("fill", "none")
+            .transition()
+            .ease("linear")
+            .duration(1000)
+            .attr("id", "func-"+this.id);
+    }
+}
 
 function add(){
     try {
         var formula = parseExpression(document.getElementById("formula").value);
         if(formula.length == 0)
             throw 1;
-        createObject(getData(formula));
-        document.getElementById("formula").value = "";
-        $("#functions-list").append("<tr><td>" + currentChar + "(x) = " + formula + "</td>" +
-            "<td><a href=\"#\" class=\"btn btn-danger btn-xs\" id=\"removeFunction\"><span class=\"glyphicon glyphicon-minus\" aria-hidden=\"true\"></span></a></td></tr>");
+        var m = new MathFunction(formula);
+        m.plot();
+        functions.push(m);
+        $("#functions-list").append("<tr id=\"label-func-"+ m.id+"\"><td>" + currentChar + "(x) = " + formula + "</td>" +
+            "<td><a href=\"#\" class=\"btn btn-danger btn-xs\" onclick=\"deleteFunction('"+ m.id +"')\"><span class=\"glyphicon glyphicon-minus\" aria-hidden=\"true\"></span></a></td></tr>");
         refreshFunctionName();
     }catch(err) {
         console.log(err);
         $("#wrong-input").html("Expresia introdusa nu este valida :/").show();
     }
-}
-
-function getData(formula,left,right){
-
-    left = typeof left !== 'undefined' ? right : -50;
-    right = typeof right !== 'undefined' ? right : 50;
-    var x,step = 0.1;
-    var data = [];
-    for(x = left; x < right; x += step){
-        data.push({'x' : x, 'y' : eval(formula)});
-    }
-
-    return data;
 }
 
 $(document).ready(function() {
@@ -58,7 +92,7 @@ function refreshFunctionName(){
             currentChar = nextChar(currentChar);
             break;
         case "z" :
-            alert("Prea multe functii ati folosit");
+            $("#input").hide();
             break;
     }
     document.getElementById("function-name").innerText = currentChar + "(x) = ";
@@ -67,59 +101,6 @@ function refreshFunctionName(){
 function parseExpression(expr){
     //removing spaces
     return expr.replace(/ /g,"").toLowerCase();
-}
-
-var WIDTH = 800;
-var HEIGHT = 600;
-var xLines = 30;
-var yLines = 30;
-var funcObjects = [];
-var string = "id";
-var nr =  0;
-
-// Function class
-
-var Function = function(red, green, blue, data, id){
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
-    this.data = data;
-    this.id = id;
-};
-
-
-
-
-function getExpression(){
-    var expr = document.getElementById("textbox").value;
-
-    expr = expr.replace("x", "(k*0.1)", "g");
-    expr = expr.replace("sin(", "Math.sin(", "g");
-    expr = expr.replace("cos(", "Math.cos(", "g");
-    return expr;
-}
-
-
-Function.prototype.plotFunction = function(){
-
-    /*for (var k = -1000; k < 1000; k++) {
-     this.data.push({"x": 0.1 * k, "y": eval(this.expr)  });
-     }*/
-
-    var lineGen = d3.svg.line()
-        .x( function(d){ return xScale(d.x);})
-        .y( function(d){ return yScale(d.y);})
-        .interpolate("basis");
-
-    canvas.append("svg:path")
-        .attr("d", lineGen(this.data))
-        .attr("stroke", "rgb(" + this.red + "," + this.green +"," + this.blue + ")")
-        .attr("stroke-width", 2)
-        .attr("fill", "none")
-        .transition()
-        .ease("linear")
-        .duration(1000)
-        .attr("id", this.id);
 }
 
 // Creating scales for x and y axis
@@ -143,8 +124,6 @@ function scaleAxisIn(){
 
 }
 
-
-
 function scaleAxisOut(){
     xLines+=5;
     yLines+=5;
@@ -159,11 +138,9 @@ function scaleAxisOut(){
 }
 
 function drawFunctions(){
-
-    for(var i = 0; i < funcObjects.length; i++){
-        funcObjects[i].plotFunction();
+    for(var i = 0; i < functions.length; i++){
+        functions[i].plot();
     }
-
 }
 
 // Function for drawing axis
@@ -212,22 +189,10 @@ function drawAxis(){
 
 }
 
-
-function createObject(data) {
-    //var data = [];
-    var r =  Math.floor(Math.random()*150);
-    var g =  Math.floor(Math.random()*150);
-    var b =  Math.floor(Math.random()*150);
-
-    nr++;
-    var id = string + nr;
-    var func = new Function(r, g, b, data, id );
-
-    funcObjects.push(func);
-    func.plotFunction();
-}
-
-function deleteObject(){
-    canvas.select("#"+funcObjects[0].id).remove();
-    funcObjects.shift();
+function deleteFunction(id){
+    $("#func-"+id).remove();
+    $("#label-func-"+id).remove();
+    functions = functions.filter(function( obj ) {
+        return obj.id !== id;
+    });
 }
