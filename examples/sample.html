@@ -55,11 +55,11 @@
         for(var i = 0; i < 100; i++) {
 
             var circle = canvas.append("circle")
-                    .transition()
-                    .duration(1000)
                     .attr("cy", Math.random() * 500 + 20)
                     .attr("cx", Math.random() * 1300 + 20)
+                    .transition()
                     .attr("r", Math.random() *40)
+                    .transition("r", Math.random * 40)
                     .style("fill", "rgb(" + Math.random()*250 + "," + Math.random()*250 + "," + Math.random()*250 + ")")
                     .style("opacity", 0.7);
         }
