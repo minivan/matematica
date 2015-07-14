@@ -4,14 +4,25 @@ var functions = [];
 
 // Creating canvas for drawing
 var canvas;
-var WIDTH = 800;
+var WIDTH = 600;
 var HEIGHT = 600;
 var xLines = 30;
 var yLines = 30;
 var totalPoints = 1000;
 
-var colors = ["#000000","#480000","#D00000","#009900","#0066CC","#660000","#663366","#9900FF","#99FF33","#9966FF"
-    ,"#CC0000","#FF0000","#CCFF66"
+var drag = d3.behavior.drag()
+    .on("dragstart", function(){
+        alert("Started");
+    })
+    .on("drag", function(){
+        alert("updated");
+    })
+    .on("dragend", function(){
+        alert("End");
+    });
+
+var colors = ["#FF4000", "#B18904", "#38610B", "#04B486", "#045FB4", "#071418", "#9AFE2E", "#0B173B", "#7401DF",
+    "#BF00FF", "#3B0B39", "#DF0174", "#610B21"
 ];
 
 function MathFunction(formula){
@@ -25,8 +36,11 @@ function MathFunction(formula){
         right = typeof right !== 'undefined' ? right : xLines;
         var x,step = (right-left)/totalPoints;
         var data = [];
+        var result;
         for(x = left; x < right; x += step){
-            data.push({'x' : x, 'y' : eval(this.formula)});
+            result = eval(this.formula);
+            if(!isNaN(result))
+                data.push({'x': x, 'y': result});
         }
 
         return data;
@@ -58,9 +72,28 @@ function add(){
         var m = new MathFunction(formula);
         m.plot();
         functions.push(m);
-        $("#functions-list").append("<tr id=\"label-func-"+ m.id+"\"><td>" + currentChar + "(x) = " + formula + "</td>" +
-            "<td><a href=\"#\" class=\"btn btn-danger btn-xs\" onclick=\"deleteFunction('"+ m.id +"')\"><span class=\"glyphicon glyphicon-minus\" aria-hidden=\"true\"></span></a></td></tr>");
+        var row = d3.select("#functions-list tbody")
+            .append("tr")
+            .attr("id","label-func-"+ m.id);
+        row.append("td")
+            .append("svg")
+            .attr("width","20px")
+            .attr("height","20px")
+            .append("rect")
+            .attr("width","20px")
+            .attr("height","20px")
+            .attr("fill", m.color);
+        row.append("td").text(currentChar + "(x) = " + formula);
+        row.append("td")
+            .append("a")
+            .attr("class","btn btn-danger btn-xs")
+            .attr("onclick","deleteFunction('"+ m.id +"')")
+            .append("span")
+            .attr("class","glyphicon glyphicon-minus")
+            .attr("aria-hidden","true");
+
         refreshFunctionName();
+        $("#wrong-input").hide();
     }catch(err) {
         console.log(err);
         $("#wrong-input").html("Expresia introdusa nu este valida :/").show();
@@ -70,16 +103,31 @@ function add(){
 $(document).ready(function() {
     $("#wrong-input").hide();
     refreshFunctionName();
-    $("#removeFunction").click(function(){
-       $(this).parent().parent().remove();
-    });
+    adjustSize();
+});
+
+$(window).resize(function() {
+    adjustSize();
+});
+
+function drawGraph(){
+    d3.select("#div2").selectAll("svg").remove();
     canvas = d3.select("#div2")
         .append("svg")
         .attr("width", WIDTH)
         .attr("height", HEIGHT)
         .append("g");
+    canvas.call(drag);
+    xScale = d3.scale.linear().range([20, WIDTH - 20]).domain([-xLines, xLines]);
+    yScale = d3.scale.linear().range([20, HEIGHT - 20]).domain([yLines, -yLines]);
     drawAxis();
-});
+    drawFunctions();
+}
+
+function adjustSize(){
+    WIDTH = HEIGHT = ($("#plotting-area").width());
+    drawGraph();
+}
 
 function nextChar(c) {
     return String.fromCharCode(c.charCodeAt(0) + 1);
@@ -134,7 +182,6 @@ function scaleAxisOut(){
     canvas.selectAll("path").remove();
     drawAxis();
     drawFunctions();
-
 }
 
 function drawFunctions(){
@@ -184,7 +231,7 @@ function drawAxis(){
 
     canvas.append("svg:g")
         .attr("class","y axis")
-        .attr("transform", "translate(" + 0 + ",0)")
+        .attr("transform", "translate(-1,0)")
         .call(yAxis2);
 
 }
@@ -193,6 +240,8 @@ function deleteFunction(id){
     $("#func-"+id).remove();
     $("#label-func-"+id).remove();
     functions = functions.filter(function( obj ) {
+        if(obj.id === id)
+            colors.push(obj.color);
         return obj.id !== id;
     });
 }

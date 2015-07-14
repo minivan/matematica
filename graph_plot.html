@@ -48,15 +48,7 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container">
-        <div class="col-xs-12">
-            <div class="innertube" id="div2">
-                <button style="margin-top: 10px; margin-bottom: 30px; margin-left: 10px;"  class="btn btn-success" onclick="scaleAxisIn();">+</button>
-                <button style="margin-top: 10px; margin-bottom: 30px" class="btn btn-success" onclick="scaleAxisOut();">-</button>
-
-
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-6" id="input">
+        <div class="col-md-4" id="input">
             <div class="col-lg-12">
                 <div class="input-group">
                     <span class="input-group-btn">
@@ -69,16 +61,32 @@
                 </div>
             </div>
             <div class="alert alert-danger col-lg-12" id="wrong-input" role="alert">Ati introdus gresit formula !</div>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <table class="table" id="functions-list">
-                <thead>
+
+            <div class="col-lg-12">
+                <table class="table" id="functions-list">
+                    <thead>
                     <tr>
-                        <td class="col-xs-10">Functia</td>
+                        <td class="col-xs-2"></td>
+                        <td class="col-xs-8">Functia</td>
                         <td class="col-xs-2">Actiuni</td>
                     </tr>
-                </thead>
-            </table>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8 well" id="plotting-area">
+            <div class="innertube" role="group" id="div2" aria-label="...">
+
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" onclick="scaleAxisIn();"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default" onclick="scaleAxisOut();"><span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
         <div class="col-md-12">
 

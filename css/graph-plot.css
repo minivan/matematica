@@ -11,7 +11,11 @@
 
 
 .innertube{
-    margin: 15px; /* Provides padding for the content */
+    background: #ffffff;
+}
+
+.innertube:hover {
+    cursor:move;
 }
 
 /*IE6 fix*/
@@ -41,7 +45,7 @@
 .line{
     fill: none;
     stroke: blue;
-    stroke-width: 2px;
+    stroke-width: 1px;
 }
 
 .tick text{
