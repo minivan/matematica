@@ -25,15 +25,15 @@ function radical(a,b){
 }
 
 function sin(a){
-    return Math.sin(rad(a));
+    return Math.sin(a);
 }
 
 function cos(a){
-    return Math.cos(rad(a));
+    return Math.cos(a);
 }
 
 function tg(a){
-    return Math.tan(rad(a));
+    return Math.tan(a);
 }
 
 function ctg(a){
