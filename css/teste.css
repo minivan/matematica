@@ -1,0 +1,122 @@
+h1 {
+  margin-top: 50px;
+  color: #00B800; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px;
+  text-align: center;
+}
+
+#container {
+  border: 1px;
+  border-radius: 25px;
+  border: 2px solid #8AC007;
+  padding-left: 5%;
+}
+
+.question {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+input[type="checkbox"] {
+    display:block;
+    width:24px;
+    height:24px;
+    margin:15px 15px 15px 5px;
+    vertical-align:middle;
+    background:url(check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+
+.list-group {
+  color: #2B2B2B;
+  position: relative;
+  text-align: center;
+}
+
+.list-group-item {
+  text-align: center;
+}
+
+.list-group > .list-group-item:hover {
+  background: #98BBEF;
+}
+
+a {
+  width: 100%;
+}
+
+#container {
+  border: 2px solid;
+  border-color: #1a1;
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+}
+
+.answer {
+  height: 50px;
+  width: 50px;
+}
+
+.glyphicon-ok {
+  font-size: 25px;
+  color:#4CCC4C;
+  display: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.glyphicon-remove {
+  font-size: 25px;
+  color:#CC0000;
+  display: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#getAnswers {
+  margin-bottom: 20px;
+
+}
+
+#getAnswers:hover {
+  background-color: #4CCC4C;
+}
+
+input[type=checkbox].css-checkbox {
+  position: absolute;
+  z-index: -1000;
+  left: -1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left: 35px;
+  height: 30px;
+  display: block;
+  line-height: 30px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  font-size: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -30px; }
+
+label.css-label {
+  background-image: url(../images/checkbox1.png);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
