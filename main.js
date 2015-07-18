@@ -54,7 +54,6 @@ function makeQuestion(titleText,value,numberText,corect){
 		var div = document.createElement("div");
 		div.id = "qAnswer";
 		div.className = "row";
-		
 		var box = document.createElement('input');
 		box.type = "checkbox";
 		box.className = "css-checkbox";
