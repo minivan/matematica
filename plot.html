@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="https://wzrd.in/standalone/function-plot@1.3.0"></script>
+    <script src="js/plot.js"></script>
+    <style>
+        #wrong-input {
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">matematica.md</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Desenare grafic<span class="sr-only">(current)</span></a></li>
+                <li><a href="quziStartPage.html">Teste<span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="col-md-4 col-xs-12" id="input">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="function-name"></button>
+                </span>
+                <input type="text" class="form-control" id="formula" placeholder="Introdu functia">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                </span>
+            </div>
+        </div>
+        <div class="alert alert-danger col-lg-12" id="wrong-input" role="alert">Ati introdus gresit formula !</div>
+
+        <div class="col-lg-12">
+            <table class="table" id="functions-list">
+                <thead>
+                <tr>
+                    <td class="col-xs-8">Functia</td>
+                    <td class="col-xs-2">Actiuni</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-8 col-xs-12" id="plotting-area">
+
+    </div>
+    <script src="js/graphPlotter.js"></script>
+
+</div>
+</body>
+</html>
