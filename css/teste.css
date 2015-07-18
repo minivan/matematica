@@ -74,10 +74,12 @@ a {
 }
 
 .answer {
+  
   float:right;
   text-align: center;
   height: 50px;
   width: 50px;
+
 }
 
 .glyphicon-ok {
