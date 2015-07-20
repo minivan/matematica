@@ -4,6 +4,7 @@ var functions = [];
 
 // Creating canvas for drawing
 var myInstance;
+var fullScreen = false;
 
 function add(){
     try {
@@ -19,9 +20,17 @@ function add(){
             .append("tr")
             .attr("id","label-func-"+ currentChar);
         row.append("td").text(currentChar + "(x) = " + formula);
-        row.append("td")
-            .append("a")
-            .attr("class","btn btn-danger btn-xs")
+        var actionsTD = row.append("td");
+
+        actionsTD.append("a")
+            .attr("class","btn btn-xs")
+            .attr("onclick","closeGraph('"+ currentChar +"')")
+            .append("span")
+            .attr("class","glyphicon glyphicon-pencil")
+            .attr("aria-hidden","true");
+
+        actionsTD.append("a")
+            .attr("class","btn btn-xs")
             .attr("onclick","deleteFunction('"+ currentChar +"')")
             .append("span")
             .attr("class","glyphicon glyphicon-minus")
@@ -40,7 +49,6 @@ function add(){
 $(document).ready(function() {
     $("#wrong-input").hide();
     refreshFunctionName();
-    adjustSize();
     myInstance = new graph();
     myInstance.plot({
         target : "#plotting-area",
@@ -50,16 +58,27 @@ $(document).ready(function() {
 });
 
 $(window).resize(function() {
-    adjustSize();
+    if(fullScreen)
+        adjustFullScreenSize();
+    else
+        adjustSize();
 });
 
 function adjustSize(){
     if(myInstance != null) {
-        myInstance.setSize($("#plotting-area").width(),$("#plotting-area").width()/2);
+        myInstance.setSize($("#plotting-area").width(), $("#plotting-area").width()/2);
         myInstance.refresh(functions);
     }
 }
 
+function adjustFullScreenSize(){
+    if(myInstance != null) {
+        var fullScreenHeaderSize = $("#fsc .full-screen-header").height();
+        $("#fsc .full-screen-content").height($("#fsc").height()-fullScreenHeaderSize);
+        myInstance.setSize($("#fsc").width() - 30,$("#fsc .full-screen-content").height()-fullScreenHeaderSize-30);
+        myInstance.refresh(functions);
+    }
+}
 function nextChar(c) {
     return String.fromCharCode(c.charCodeAt(0) + 1);
 }
@@ -82,10 +101,45 @@ function parseExpression(expr){
 }
 
 function deleteFunction(id){
-    console.log(id);
     $("#label-func-"+id).remove();
     functions = functions.filter(function( obj ) {
         return obj.id !== id;
     });
     myInstance.refresh(functions);
+}
+
+function closeGraph(id){
+    for(i =0 ;i < functions.length;i++){
+        if(functions[i].id === id){
+            if(typeof functions[i].graphOptions.closed == 'undefined')
+                functions[i].graphOptions = {
+                    closed: true
+                };
+            else
+                functions[i].graphOptions.closed = !functions[i].graphOptions.closed;
+        }
+    }
+    myInstance.refresh(functions);
+}
+
+function openFullScreen(){
+    fullScreen = true;
+    $("#fsc").fadeIn();
+    myInstance = new graph();
+    myInstance.plot({
+        target : "#fsc .full-screen-content",
+        data : functions
+    });
+    adjustFullScreenSize();
+}
+
+function closeFullScreen(){
+    fullScreen = false;
+    $("#fsc").fadeOut();
+    myInstance = new graph();
+    myInstance.plot({
+        target : "#plotting-area",
+        data : functions
+    });
+    adjustSize();
 }
