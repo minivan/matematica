@@ -62,7 +62,7 @@
         #fsc .full-screen-header {
             overflow:hidden;
             vertical-align: middle;
-            border-top:1px solid #0095dd;
+            border-bottom:1px solid #0095dd;
             padding-top:4px;
             background-color: #f9f9f9;
         }
@@ -125,7 +125,7 @@
 
                 </tbody>
             </table>
-            <table class="table table-hover table-striped examples">
+            <table class="table table-hover table-striped examples hidden-md hidden-xs">
                 <thead>
                 <tr>
                     <td class="col-xs-6">Limbaj</td>
@@ -173,11 +173,11 @@
         </div>
      </div>
     <div class="full-screen container-fluid" id="fsc">
-        <div class="full-screen-content">
-
-        </div>
         <div class="full-screen-header">
             <a href="#" class="btn pull-right" onclick="closeFullScreen()"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span></a>
+        </div>
+        <div class="full-screen-content">
+
         </div>
     </div>
     <script src="js/graphPlotter.js"></script>
