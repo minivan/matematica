@@ -1,5 +1,7 @@
 var currentChar = 'e';
 
+var functionsNames = ["f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"];
+
 var functions = [];
 
 // Creating canvas for drawing
@@ -40,10 +42,18 @@ function add(){
         $("#wrong-input").hide();
         myInstance.refresh(functions);
         $("#formula").val("");
+        checkForEmpty();
     }catch(err) {
         console.log(err);
         $("#wrong-input").html("Expresia introdusa nu este valida :/").show();
     }
+}
+
+function checkForEmpty(){
+    if(functions.length == 0)
+        $("#functions-list").hide();
+    else
+        $("#functions-list").show();
 }
 
 $(document).ready(function() {
@@ -55,6 +65,7 @@ $(document).ready(function() {
         data : functions
     });
     adjustSize();
+    checkForEmpty();
 
 /*    $("#formula").val("x^2");
     add();
@@ -82,20 +93,11 @@ function adjustFullScreenSize(){
         myInstance.refresh(functions);
     }
 }
-function nextChar(c) {
-    return String.fromCharCode(c.charCodeAt(0) + 1);
-}
 
 function refreshFunctionName(){
-    currentChar = nextChar(currentChar);
-    switch (currentChar){
-        case "x" :
-            currentChar = nextChar(currentChar);
-            break;
-        case "z" :
-            $("#input").hide();
-            break;
-    }
+    if(functionsNames.length == 0)
+        $("#input").hide();
+    currentChar = functionsNames.shift();
     document.getElementById("function-name").innerText = currentChar + "(x) = ";
 }
 
@@ -109,6 +111,9 @@ function deleteFunction(id){
         return obj.id !== id;
     });
     myInstance.refresh(functions);
+    functionsNames.push(id);
+    functionsNames = functionsNames.sort();
+    checkForEmpty();
 }
 
 function closeGraph(id){
