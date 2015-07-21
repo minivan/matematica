@@ -714,11 +714,11 @@ module.exports = function (options) {
         var text = [];
         title && text.push(title);
         text.push(format(x, y));
-
         instance.root.select('.top-right-legend')
           .attr('fill', Const.COLORS[index])
           //.text(x.toFixed(3) + ', ' + y.toFixed(3));
-          .text(text.join(' '));
+          //.text(text.join(' '));
+          .text(title);
       }
     };
 
