@@ -56,9 +56,9 @@ $(document).ready(function() {
     });
     adjustSize();
 
-    $("#formula").val("x^2");
+/*    $("#formula").val("x^2");
     add();
-    openFullScreen();
+    openFullScreen();*/
 });
 
 $(window).resize(function() {
