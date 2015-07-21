@@ -67,9 +67,11 @@ $(document).ready(function() {
     adjustSize();
     checkForEmpty();
 
-/*    $("#formula").val("x^2");
-    add();
-    openFullScreen();*/
+    $("#formula").keyup(function(event){
+        if(event.keyCode == 13){
+            add();
+        }
+    });
 });
 
 $(window).resize(function() {
@@ -81,7 +83,7 @@ $(window).resize(function() {
 
 function adjustSize(){
     if(myInstance != null) {
-        myInstance.setSize($("#plotting-area").width(), $("#plotting-area").width()/2);
+        myInstance.setSize($("#plotting-area").width(), $("#plotting-area").width()/1.5);
         myInstance.refresh(functions);
     }
 }
@@ -157,3 +159,4 @@ $(document).keyup(function(e) {
         closeFullScreen();
     }
 });
+
