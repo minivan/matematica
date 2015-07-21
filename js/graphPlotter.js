@@ -146,3 +146,9 @@ function closeFullScreen(){
     });
     adjustSize();
 }
+
+$(document).keyup(function(e) {
+    if (e.keyCode == 27 && fullScreen) {
+        closeFullScreen();
+    }
+});
