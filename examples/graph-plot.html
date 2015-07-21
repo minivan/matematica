@@ -27,7 +27,7 @@
 <nav id="nav">
     <div class="innertube">
         <input class="form-control" style="width: 380px" type="text" id="textbox"/>
-        <button style="margin-top: 10px; margin-bottom: 30px" class="btn btn-success" onclick="createObject(data)">Evaluate</button>
+        <button style="margin-top: 10px; margin-bottom: 30px" class="btn btn-success" onclick="createObject();">Evaluate</button>
         <button style="margin-top: 10px; margin-bottom: 30px" class="btn btn-success" onclick="deleteObject();">Delete</button>
         <table class="table table-bordered" id="table">
             
@@ -58,8 +58,6 @@
     };
 
 
-
-
     function getExpression(){
         var expr = document.getElementById("textbox").value;
 
@@ -72,9 +70,9 @@
 
     Function.prototype.plotFunction = function(){
 
-        /*for (var k = -1000; k < 1000; k++) {
+        for (var k = -1000; k < 1000; k++) {
             this.data.push({"x": 0.1 * k, "y": eval(this.expr)  });
-        }*/
+        }
 
         var lineGen = d3.svg.line()
                 .x( function(d){ return xScale(d.x);})
@@ -122,8 +120,6 @@
         drawFunctions();
 
     }
-
-
 
     function scaleAxisOut(){
         xLines+=5;
@@ -193,12 +189,11 @@
     }
 
 
-    function createObject(data) {
-        //var data = [];
+    function createObject() {
+        var data = [];
         var r =  Math.floor(Math.random()*150);
         var g =  Math.floor(Math.random()*150);
         var b =  Math.floor(Math.random()*150);
-
         var expr = getExpression();
 
         nr++;

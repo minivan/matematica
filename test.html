@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link href="css/graph-plot.css" rel="stylesheet" type="text/css" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/graphPlotter.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="https://wzrd.in/standalone/function-plot@1.3.0"></script>
+
+
+
+</head>
+<body>
+<div>
+    <div id="plot"></div>
+
+    <div>
+
+        <div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<input type="text" id="textbox"/>
+<button onclick="drawFunctions();"> Hello </button>
+
+
+<script type="text/javascript">
+
+    var expression = "";
+    var data = [];
+    var function_number = 0;
+
+    function getExpression() {
+        expression = document.getElementById("textbox").value;
+        function_number++;
+        data.push({ "title": function_number, "fn": expression});
+    }
+
+    function drawFunction() {
+        getExpression();
+
+        $(document.getElementById("plot")).ready(function () {
+            var instance = functionPlot({
+                tip: {
+                    xLine: true,
+                    yLine: true
+                },
+                target: '#plot',
+                title: 'Plotting',
+                xLabel: 'x',
+                yLabel: 'y',
+                data: data
+            });
+
+        });
+    }
+
+
+
+
+</script>
+</body>
+</html>
