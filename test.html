@@ -1,6 +1,7 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Document</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -38,7 +39,7 @@
 
 
 
-<input type="text" id="textbox"/>
+    <input type="text" id="textbox"/>
 <button onclick="drawFunctions();"> Hello </button>
 
 
@@ -54,7 +55,7 @@
         data.push({ "title": function_number, "fn": expression});
     }
 
-    function drawFunction() {
+    function drawFunctions() {
         getExpression();
 
         $(document.getElementById("plot")).ready(function () {

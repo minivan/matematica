@@ -1,7 +1,7 @@
 var currentChar = 'e';
 
 var functionsNames = ["f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"];
-
+var i = 0;
 var functions = [];
 
 // Creating canvas for drawing
@@ -11,7 +11,7 @@ var fullScreen = false;
 function add(){
     try {
         var formula = parseExpression(document.getElementById("formula").value);
-        document.getElementById("formula").firstChild = "";
+
         if(formula.length == 0)
             throw 1;
         functions.push({
@@ -19,6 +19,8 @@ function add(){
             fn : formula,
             title : currentChar + "(x)"
         });
+
+
         var row = d3.select("#functions-list tbody")
             .append("tr")
             .attr("id","label-func-"+ currentChar);
@@ -47,6 +49,10 @@ function add(){
     }catch(err) {
         console.log(err);
         $("#wrong-input").html("Expresia introdusa nu este valida :/").show();
+        functions.pop();
+        $("#label-func-"+functionsNames[--i]).remove();
+
+
     }
 }
 
@@ -100,7 +106,7 @@ function adjustFullScreenSize(){
 function refreshFunctionName(){
     if(functionsNames.length == 0)
         $("#input").hide();
-    currentChar = functionsNames.shift();
+    currentChar = functionsNames[++i];
     document.getElementById("function-name").innerText = currentChar + "(x) = ";
 }
 
