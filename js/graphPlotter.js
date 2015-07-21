@@ -11,6 +11,7 @@ var fullScreen = false;
 function add(){
     try {
         var formula = parseExpression(document.getElementById("formula").value);
+        document.getElementById("formula").firstChild = "";
         if(formula.length == 0)
             throw 1;
         functions.push({
