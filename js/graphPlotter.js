@@ -55,6 +55,10 @@ $(document).ready(function() {
         data : functions
     });
     adjustSize();
+
+    $("#formula").val("x^2");
+    add();
+    openFullScreen();
 });
 
 $(window).resize(function() {
@@ -73,9 +77,8 @@ function adjustSize(){
 
 function adjustFullScreenSize(){
     if(myInstance != null) {
-        var fullScreenHeaderSize = $("#fsc .full-screen-header").height();
-        $("#fsc .full-screen-content").height($("#fsc").height()-fullScreenHeaderSize);
-        myInstance.setSize($("#fsc").width() - 30,$("#fsc .full-screen-content").height()-fullScreenHeaderSize-30);
+        $("#fsc .full-screen-content").height($("#fsc").height() - $("#fsc .full-screen-header").height()-10);
+        myInstance.setSize($("#fsc").width(),$("#fsc .full-screen-content").height());
         myInstance.refresh(functions);
     }
 }
