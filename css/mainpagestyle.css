@@ -1,0 +1,243 @@
+html {
+    height: 100%
+}
+body {
+    font-family: Ubuntu, sans-serif;
+    /*height: 100%;*/
+}
+body.with-background {
+ background: #fff url(/images/cover.png) no-repeat center;
+background-size: cover;       
+}
+
+header {
+    background-color: #fff;
+}
+.nav {
+    float: right;
+    margin: 28px 0 0;
+    position: relative;
+    bottom: -3px;
+}
+.nav li {
+    display: inline-block;
+}
+.nav li a{
+     border-bottom:4px solid #fff;
+     vertical-align: super;
+     padding-bottom: 23px;
+     font-size: 20px;
+     font-family: 'Ubuntu', sans-serif;
+     color: #191919;
+     margin-left: 40px;
+     transition: all .2s ease-in-out;
+}
+.nav li a:hover{
+    border-bottom:4px solid #f25e5c;
+    background-color: transparent;
+    text-decoration: none;
+}
+.logo img {
+    width: 160px;
+    margin-top: 15px;
+}
+header .menu-toggle {
+    display: none;
+}
+
+
+
+
+nav li.active a{
+    border-bottom:4px solid red;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    background-color: transparent;
+}
+/*sup {
+    vertical-align: super;
+    font-size: initial;
+}*/
+
+.content {
+    /*background-image: url(http://wallpapers111.com/wp-content/uploads/2015/06/Retro-Beach-HD-Wallpapers.jpg);,url(https://c1.staticflickr.com/5/4006/4516917880_7d78593163_b.jpg), url(http://data1.whicdn.com/images/107834681/large.jpg);*/
+    
+    
+    background-size: auto;
+    
+    text-align : center;
+    color:#ffffff;
+    vertical-align: middle;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    height: 100%;
+    width:  100%;
+
+    overflow: none;
+    display: block;
+    z-index: 1;
+
+}
+
+.navbar-brand img{
+    width: 30%;
+}
+.navHeaderCollapse{
+    padding: 10px;
+}
+
+/*@media (max-width: 1200px) {   
+    .logo img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}*/
+
+@media (max-width: 1200px) {   
+    .nav li a{
+        padding-bottom: 28px;
+    }
+}
+
+@media (max-width: 1199px) {   
+    .nav li a{
+        padding-bottom: 14px;
+    }
+}
+
+@media (max-width: 991px) {   
+    .nav li a{
+        padding-bottom: 10px;
+        font-size: 18px;
+        
+    }
+    }
+    /*nav li {
+        padding: 0 -10px;
+        
+    }*/
+    
+}
+
+@media (max-width: 992px) {   
+    .logo img {
+        margin-top: 22px;
+    }
+}
+
+.btn{
+    border-bottom: 30%;
+}
+
+
+@media (max-width: 768px) {
+    header .menu-toggle {
+        display: inline-block;
+        float: right;
+        padding: 10px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+
+    header {
+        position: relative;
+        overflow: visible;
+    }
+    .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ccc;
+        z-index: 9999;
+        overflow: hidden;
+        margin: 0;
+        display: none;
+        float: none;
+        bottom: inherit;
+
+    }
+    .nav ul {
+        padding: 0 15px;
+        display: block;
+    }
+    .nav li {
+        display: block;
+        margin: 10px 0;
+        padding: 0 15px;
+        width: 100%;
+        position: inherit;
+    }
+    .nav li a {
+        display: block;
+        padding: 0;
+        border-bottom: none;
+        margin: 0
+    }
+    .nav li.active a, .nav li a:hover {
+        border-bottom: none;
+        color: #f25e5c;
+    }
+}
+
+.content{
+   position:absolute;
+   bottom:30%;
+   /*width:100%;*/
+   height:60px;   /* Height of the footer */
+}
+
+div h3{
+    font-weight: bolder;
+    font-size: 35px;
+}
+
+@media (max-width: 612px) {   
+    div h3{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 591px) {   
+    div h3{
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 559px) {   
+    div h3{
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 543px) {   
+    div h3{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 671px) {   
+    div h3{
+        font-size: 29px;
+    }
+}
+
+@media (max-width: 574px) {   
+    div h3{
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 510px) {   
+    div h3{
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 510px) {   
+    div h3{
+        font-size: 24px;
+    }
+}
