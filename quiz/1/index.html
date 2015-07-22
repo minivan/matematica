@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-  	<link rel="stylesheet" href="css/teste.css">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>  
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="./main.js"></script>
-	<script src="js/teste.js"></script>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/teste.css">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>  
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/quiz/quiz.js"></script>
+  <script src="/js/teste.js"></script>
 </head>
 
 
@@ -30,18 +30,18 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="plot.html">Desenare grafic<span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="quizStartPage.html">Teste<span class="sr-only">(current)</span></a></li>
+                    <li><a href="/plot.html">Desenare grafic<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="/quizStartPage.html">Teste<span class="sr-only">(current)</span></a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
-	<h1 id = "headerTitle"></h1>
-	<div id="container">
-			<div id="quiz" class = "row"></div>
-			<div class="row"><button id="getAnswers"class="btn btn-default" onclick = "results()" type="submit">Rezultate</button></div>
-	</div>
+  <h1 id = "headerTitle"></h1>
+  <div id="container">
+      <div id="quiz" class = "row" data-quiz-id="1"></div>
+      <div class="row"><button id="getAnswers"class="btn btn-default" onclick = "results()" type="submit">Rezultate</button></div>
+  </div>
 
 </body>
 </html>

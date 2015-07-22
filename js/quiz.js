@@ -3,12 +3,13 @@ var corectAnswers = [];
 var quizAnswers = [];
 var boxId = 0;
 
-function makeQuestion(titleText,value,numberText,corect){
+
+function makeQuestion(titleText,value,numberText,corect,graphImg){
 	var qId = numberText-1;
 	var question = document.createElement("div");
 	question.id = "question_"+qId;
 	var quiz = document.getElementById("quiz");
-	quiz.appendChild(question);	
+	quiz.appendChild(question);
 
 	var qHeader = document.createElement("div");
 	qHeader.className = "row";
@@ -16,11 +17,11 @@ function makeQuestion(titleText,value,numberText,corect){
 	question.appendChild(qHeader);
 
 	var qNumber  = document.createElement("h3");
-	qNumber.appendChild(document.createTextNode("Question "+numberText));
+	qNumber.appendChild(document.createTextNode("Sarcina "+numberText));
 	qNumber.className = "title";
 	qNumber.id = "qNumber";
 	qHeader.appendChild(qNumber);
-	//QUESTION APPEND
+
 	var answer = document.createElement("div");
 	answer.className = "answer";
 	qHeader.appendChild(answer);
@@ -28,21 +29,38 @@ function makeQuestion(titleText,value,numberText,corect){
 	var icon = document.createElement("span");
 	icon.className = "glyphicon glyphicon-remove";
 	answer.appendChild(icon);
-	
+
 	var contant = document.createElement("div");
-	contant.className = "contant";
+	contant.className = "contant row";
 	question.appendChild(contant);
 
+	var coloana1 = document.createElement("div");
+	coloana1.className = "col-md-8 col-sm-12";
 
-	var row = document.createElement("div");
-	row.className = "row";
+
+	var coloana2 = document.createElement("div");
+	coloana2.className = "col-md-4 col-sm-12";
+
+	if(graphImg != ""){
+		graphImg = "quizes/images/"+graphImg;
+		var graph = document.createElement("img");
+		graph.className = "qImg";
+		graph.setAttribute("src", graphImg);
+		coloana2.appendChild(graph);
+	}
+
+	contant.appendChild(coloana1);
+	contant.appendChild(coloana2);
+
 	var qTitle = document.createElement("div");
 	var test = document.createTextNode(titleText);
 	qTitle.appendChild(test);
-	qTitle.className = "text";
-	row.appendChild(qTitle);
+	qTitle.className = "text row";
 
-	contant.appendChild(row);
+	coloana1.appendChild(qTitle);
+
+
+
 	quizAnswers[numberText-1] = [];
 	corectAnswers[numberText-1] = corect;
 
@@ -76,56 +94,52 @@ function makeQuestion(titleText,value,numberText,corect){
 		label.className = "css-label";
 		div.appendChild(box);
 		div.appendChild(label);
-		contant.appendChild(div); 
+		coloana1.appendChild(div);
 		boxId++;
 		nr++;
-	} 
+	}
 }
 
 function displayTest(quiz){
 	$.ajax({
-		url:quiz,
+		url:"quizes/"+quiz,
 		dataType:"json",
 		type:"get",
 		cache:false,
 		success: function(data){
 			var header = document.getElementById("headerTitle");
-			header.innerHTML = "Quiz nr."+quiz.substring(4,5);
+			header.innerHTML = "Test nr."+quiz.substring(4,5);
 			$(data.quiz).each(function(index,value){
-				makeQuestion(value.title,value.variants,index+1,value.answer);	
+				makeQuestion(value.title,value.variants,index+1,value.answer,value.graph);
 			});
 		}
 	});
 }
 
-function setDefault(){
-	console.log("default");
-	name = "";
-}
-
-function startTest(names){	
+function startTest(names) {
 	name = names;
 }
-displayTest(name);	
+
+$(function() {
+	displayTest(name);
+ })
 
 function iconPlacement(id,answer){
 	var q = document.getElementById("question_"+id);
 	var q1 = q.childNodes[0].childNodes[1].childNodes[0];
-	if(answer){
+	if(answer) {
 		q1.className = "glyphicon glyphicon-ok";
-	}else
-	{
+	} else {
 		q1.className = "glyphicon glyphicon-remove";
 	}
 }
 
 
-function results()
-{
+function results(){
 	var i = 0;
 	var marck = 0;
 	$.ajax({
-		url:name,
+		url:"quizes/"+name,
 		dataType:"json",
 		type:"get",
 		cache:false,
@@ -135,15 +149,14 @@ function results()
 				if(arr_diff(quizAnswers[i],value.answer) == 0){
 					score++;
 					iconPlacement(i,true);
-				}else
-				{
+				} else {
 					iconPlacement(i,false);
 				}
-				i++;	
+				i++;
 			});
-			//console.log(score);
+			console.log(score);
 		}
-	});	
+	});
 }
 
 function arr_diff(a1, a2){
@@ -159,20 +172,18 @@ function arr_diff(a1, a2){
 }
 
 function arr_intersect(a, b) {
-    var d1 = {};
-    var d2 = {};
-    var results = [];
-    for (var i = 0; i < a.length; i++) {
-        d1[a[i]] = true;
-    }
-    for (var j = 0; j < b.length; j++) {
-        d2[b[j]] = true;
-    }
-    for (var k in d1) {
-        if (d2[k]) 
-            results.push(k);
-    }
-    return results;
+  var d1 = {};
+  var d2 = {};
+  var results = [];
+  for (var i = 0; i < a.length; i++) {
+      d1[a[i]] = true;
+  }
+  for (var j = 0; j < b.length; j++) {
+      d2[b[j]] = true;
+  }
+  for (var k in d1) {
+      if (d2[k])
+          results.push(k);
+  }
+  return results;
 }
-
-
