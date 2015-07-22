@@ -1,0 +1,28 @@
+{
+	"quiz":[
+		{
+			"id":0,
+			"title":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque eveniet quos quibusdam reprehenderit, doloremque unde quam ab cum ratione nulla laborum fugiat, eius aliquam distinctio soluta quis eum debitis odit!",
+			"graph":"parabola.jpeg",
+			"variants":{
+				"1":" equilateral triangle",
+				"2":" obtuse triangle",
+				"3":" acute triangle",
+				"4":" isosceles triangle"
+			},
+			"answer":[1,2,3]
+		},
+		{
+			"id":1,
+			"title":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque eveniet quos quibusdam reprehenderit, doloremque unde quam ab cum ratione nulla laborum fugiat, eius aliquam distinctio soluta quis eum debitis odit!",
+			"graph":"",
+			"variants":{
+				"1":" equilateral triangle",
+				"2":" obtuse triangle",
+				"3":" acute triangle",
+				"4":" isosceles triangle"
+			},
+			"answer":[1,2]
+		}
+	]
+}

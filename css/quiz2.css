@@ -1,0 +1,97 @@
+body, html{
+    height:100%;
+    width: 100%;
+    padding:0;
+    margin:0;
+    font-family: Ubuntu;
+
+}
+
+@media only screen and (max-width: 768px) {
+    li {
+        padding-top:10px;
+        text-align: left;
+        width: 50%;
+    }
+}
+
+
+.navbar-toggle {
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+.navbar-brand img {
+    width: 278px;
+    height: 118px;
+}
+
+.collapse {
+    vertical-align: middle;
+    margin-top: 20px;
+}
+
+.nav li a:hover {
+    border-bottom:4px solid red;
+}
+
+.nav li:hover {
+    background: #eee;
+}
+
+.nav li a {
+     border-bottom:4px solid #fff;
+     vertical-align: super;
+ }
+
+.btn {
+    position: relative;
+    margin-top: 25%;
+}
+
+sup {
+    vertical-align: middle;
+    font-size: initial;
+}
+
+.container {
+    margin-left: auto;
+    margin-right:auto;
+    height: inherit;
+
+}
+
+.content {
+    padding: 0px;
+    margin: 0px;
+    height: 0%;
+    width:  100%;
+
+    background-repeat: no-repeat;
+    /*background-size: auto;*/
+    /*background-attachment: fixed;*/
+    text-align : center;
+    color:#ffffff;
+    vertical-align: middle;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+
+    overflow: none;
+    display: block;
+    z-index: 1;
+}
+
+.navbar {
+    float: left;
+    width: 100%;
+}
+
+.navbar-brand {
+    height: 25%;
+    width: 25%;
+}
+
+.navHeaderCollapse {
+    padding: 20px;
+}

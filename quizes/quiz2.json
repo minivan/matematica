@@ -1,0 +1,28 @@
+{
+	"quiz":[
+		{
+			"id":0,
+			"title":"Care dintre unghiuri este un unghi ascutit ?",
+			"graph":"q2.1.png",
+			"variants":{
+				"1":"Unghiul A",
+				"2":"Unghiul B",
+				"3":"Unghiul C",
+				"4":"Unghiul D"
+			},
+			"answer":[4]
+		},
+		{
+			"id":1,
+			"title":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque eveniet quos quibusdam reprehenderit, doloremque unde quam ab cum ratione nulla laborum fugiat, eius aliquam distinctio soluta quis eum debitis odit!",
+			"graph":"",
+			"variants":{
+				"1":" equilateral triangle",
+				"2":" obtuse triangle",
+				"3":" acute triangle",
+				"4":" isosceles triangle"
+			},
+			"answer":[1,2]
+		}
+	]
+}
